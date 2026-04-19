@@ -4,11 +4,14 @@ import { artifacts } from "@/data/artifacts";
 import type { Level, Purpose } from "@/data/artifacts";
 import { FilterBar } from "@/components/FilterBar";
 import { ArtifactCard } from "@/components/ArtifactCard";
+import { SearchBar } from "@/components/SearchBar";
+import type { ClassifyResult } from "@/lib/classifier";
 
 const Index = () => {
   const [selectedLevels, setSelectedLevels] = useState<Level[]>([]);
   const [selectedPurposes, setSelectedPurposes] = useState<Purpose[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const toggleLevel = (l: Level) =>
     setSelectedLevels((prev) =>
@@ -20,14 +23,55 @@ const Index = () => {
       prev.includes(p) ? prev.filter((x) => x !== p) : [...prev, p]
     );
 
+  const handleClassified = (query: string, result: ClassifyResult) => {
+    setSearchQuery(query);
+    if (result.level) setSelectedLevels([result.level.label]);
+    else setSelectedLevels([]);
+    if (result.purpose) setSelectedPurposes([result.purpose.label]);
+    else setSelectedPurposes([]);
+    setSelectedCategory(result.category?.label ?? null);
+  };
+
+  const handleCleared = () => {
+    setSearchQuery("");
+    setSelectedLevels([]);
+    setSelectedPurposes([]);
+    setSelectedCategory(null);
+  };
+
   const filtered = useMemo(() => {
+    const tokens = searchQuery
+      .trim()
+      .toLowerCase()
+      .split(/\s+/)
+      .filter((t) => t.length >= 2);
+    const noClassifier =
+      selectedLevels.length === 0 && selectedPurposes.length === 0 && !selectedCategory;
+
     return artifacts.filter((a) => {
       if (selectedLevels.length && !selectedLevels.includes(a.level as Level)) return false;
       if (selectedPurposes.length && !selectedPurposes.includes(a.purpose as Purpose)) return false;
       if (selectedCategory && a.category !== selectedCategory) return false;
+
+      // When classification produced no filters but user searched something,
+      // fall back to substring match over artifact text fields.
+      if (noClassifier && tokens.length) {
+        const haystack = [
+          a.category,
+          a.purpose,
+          a.level,
+          a.summary ?? "",
+          a.tools ?? "",
+          a.dataNeeded ?? "",
+          ...a.artifacts.flatMap((x) => [x.name, x.behavior, x.path]),
+        ]
+          .join(" ")
+          .toLowerCase();
+        if (!tokens.some((t) => haystack.includes(t))) return false;
+      }
       return true;
     });
-  }, [selectedLevels, selectedPurposes, selectedCategory]);
+  }, [selectedLevels, selectedPurposes, selectedCategory, searchQuery]);
 
   const stats = useMemo(() => ({
     total: filtered.length,
@@ -79,6 +123,16 @@ const Index = () => {
 
       {/* Main */}
       <main className="container mx-auto px-4 py-8">
+        {/* Search */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.15 }}
+          className="mb-4 rounded-lg border border-border bg-card/50 p-4"
+        >
+          <SearchBar onClassified={handleClassified} onCleared={handleCleared} />
+        </motion.div>
+
         {/* Filters */}
         <motion.div
           initial={{ opacity: 0 }}
