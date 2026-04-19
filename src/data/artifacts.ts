@@ -733,6 +733,142 @@ export const artifacts: Artifact[] = [
     "tools": "Wireshark - 로컬 PC를 오가는 실제 네트워크 패킷을 캡처하여 데이터가 어떻게 캡슐화(Encapsulation)되고 전송되는지 프로토콜 레벨에서 시각적으로 교육할 수 있는 산업 표준 도구",
     "dataNeeded": null,
     "summary": "추가적인 조사 방법: 브라우저의 시크릿 모드(Incognito) 작동 시 디스크 쓰기 방지 원리를 학습하고, 로컬 디스크에 아티팩트가 남지 않아도 ISP(인터넷 제공자) 단에는 기록이 전송되는 구조적 차이점 분석"
+  },
+  {
+    "id": "fs_inv_basic",
+    "category": "파일시스템",
+    "purpose": "수사 조사",
+    "level": "초급",
+    "artifacts": [
+      { "name": "$MFT", "behavior": "파일 이름 등 메타데이터", "path": "C:\\$MFT" },
+      { "name": "$LogFile", "behavior": "파일 변경 여부 확인", "path": "C:\\$LogFile" }
+    ],
+    "tools": "FTK Imager, NTFS Log Tracker, analyzeMFT",
+    "dataNeeded": "디스크에서 파일 추출 (FTK Imager)",
+    "summary": "파일 변화 확인할 수 있는 기본 단계"
+  },
+  {
+    "id": "fs_inv_intermediate",
+    "category": "파일시스템",
+    "purpose": "수사 조사",
+    "level": "중급",
+    "artifacts": [
+      { "name": "$MFT", "behavior": "파일 이름 및 생성 시간, 소유자 등 정보 확인", "path": "C:\\$MFT" },
+      { "name": "$LogFile", "behavior": "파일 생성, 파일 삭제, 변경 여부 등 확인 가능", "path": "C:\\$LogFile" },
+      { "name": "$UsnJrnl", "behavior": "파일 및 디렉터리 변경 기록", "path": "C:\\$UsnJrnl" },
+      { "name": "$Data", "behavior": "실제 데이터 저장", "path": "C:\\$Data" },
+      { "name": "Prefetch", "behavior": "읽기 속도를 높이기 위해 미리 메모리에서 가져온 데이터", "path": "C:\\Windows\\Prefetch" },
+      { "name": "바로가기 파일", "behavior": "파일/폴더 접근 및 실행 확인 가능", "path": "C:\\사용자 이름\\AppData\\Roaming\\Microsoft \\Windows\\Recent\\*.LNK" }
+    ],
+    "tools": "HxD, NTFS Log Tracker, FTK Imager",
+    "dataNeeded": "$LogFile, $UsnJrnl:$j, $MFT",
+    "summary": "좀 더 상세한 내용 확인 가능"
+  },
+  {
+    "id": "fs_inv_advanced",
+    "category": "파일시스템",
+    "purpose": "수사 조사",
+    "level": "고급",
+    "artifacts": [
+      { "name": "$MFT", "behavior": "파일 이름 및 생성 시간($FILE_NAME), 파일 소유자, 접근 권한 등 일반적 정보($STANDARD_INFORMATION), 파일 내용($DATA) 등", "path": "C:\\$MFT" },
+      { "name": "$LogFile", "behavior": "파일 생성, 파일 삭제, 변경 여부 등 확인 가능", "path": "C:\\$LogFile" },
+      { "name": "$Data", "behavior": "실제 데이터 저장", "path": "C:\\$Data" },
+      { "name": "$UsnJrnl", "behavior": "파일 변경 여부 확인", "path": "C:\\$UsnJrnl" },
+      { "name": "Prefetch", "behavior": "읽기 속도를 높이기 위해 미리 메모리에서 가져온 데이터", "path": "C:\\Windows\\Prefetch" },
+      { "name": "바로가기 파일", "behavior": "파일/폴더 접근 및 실행 확인 가능", "path": "C:\\사용자 이름\\AppData\\Roaming\\Microsoft \\Windows\\Recent\\*.LNK" }
+    ],
+    "tools": "HxD, NTFS Log Tracker, analyzeMFT, FTK Imager, Winprefetch",
+    "dataNeeded": "$LogFile, $UsnJrnl:$j, $MFT",
+    "summary": "단순 분석을 넘어 파일간 내용 비교 대조를 통해 위변조 여부까지 파악해야 하는 단계"
+  },
+  {
+    "id": "fs_ir_basic",
+    "category": "파일시스템",
+    "purpose": "보안 침해 분석",
+    "level": "초급",
+    "artifacts": [
+      { "name": "$MFT", "behavior": "악성코드 생성 및 수정 시간, 파일 메타데이터 확인", "path": "C:\\$MFT" },
+      { "name": "$UsnJrnl", "behavior": "파일 시스템 변경 이벤트 확인", "path": "C:\\$LogFile" },
+      { "name": "휴지통", "behavior": "삭제된 파일 확인", "path": "C:\\$Recycle.Bin" }
+    ],
+    "tools": "analyzeMFT, FTK Imager, NTFS Log Tracker",
+    "dataNeeded": null,
+    "summary": "의심 프로그램 실행 확인과 관련된 조사"
+  },
+  {
+    "id": "fs_ir_intermediate",
+    "category": "파일시스템",
+    "purpose": "보안 침해 분석",
+    "level": "중급",
+    "artifacts": [
+      { "name": "$MFT", "behavior": "악성코드 생성 및 수정 시간, 파일 메타데이터 확인", "path": "C:\\$MFT" },
+      { "name": "$UsnJrnl", "behavior": "파일 시스템 변경 이벤트 확인", "path": "C:\\$LogFile" },
+      { "name": "휴지통", "behavior": "삭제된 파일 확인", "path": "C:\\$Recycle.Bin" },
+      { "name": "$LogFile", "behavior": "파일 메타디에터 변경 사항 확인", "path": "C:\\$LogFile" }
+    ],
+    "tools": "analyzeMFT, FTK Imager, NTFS Log Tracker",
+    "dataNeeded": null,
+    "summary": "의심 프로그램 이벤트 여부 확인하고 메타데이터 변경 확인"
+  },
+  {
+    "id": "fs_ir_advanced",
+    "category": "파일시스템",
+    "purpose": "보안 침해 분석",
+    "level": "고급",
+    "artifacts": [
+      { "name": "$MFT", "behavior": "악성코드 생성 및 수정 시간, 파일 메타데이터 확인", "path": "C:\\$MFT" },
+      { "name": "$UsnJrnl", "behavior": "파일 시스템 변경 이벤트 확인", "path": "C:\\$UsnJrnl" },
+      { "name": "$LogFile", "behavior": "파일 메타디에터 변경 사항 확인", "path": "C:\\$LogFile" },
+      { "name": "휴지통", "behavior": "삭제된 파일 확인", "path": "C:\\$Recycle.Bin" },
+      { "name": "바로가기 파일", "behavior": "파일 실행 흔적 확인", "path": "C:\\사용자 이름\\AppData\\Roaming\\Microsoft \\Windows\\Recent\\*.LNK" },
+      { "name": "$Bitmap", "behavior": "삭제 파일 카빙 및 할당 상태 확인", "path": "C:\\$Bitmap" }
+    ],
+    "tools": "HxD, NTFS Log Tracker, analyzeMFT, FTK Imager, Winprefetch",
+    "dataNeeded": "$LogFile, $UsnJrnl:$j, $MFT",
+    "summary": "악성 행위 확인에서 나아가 로그 파일 교차 검증을 통해 안티포렌식 여부까지 확인"
+  },
+  {
+    "id": "fs_edu_basic",
+    "category": "파일시스템",
+    "purpose": "기본 보안",
+    "level": "초급",
+    "artifacts": [
+      { "name": "파일 상세정보", "behavior": "파일 이름 등 메타데이터", "path": "파일 우클릭→속성→생성 및 수정 시간 등 메타데이터 확인" },
+      { "name": "휴지통", "behavior": "삭제된 파일 확인", "path": "C:\\$Recycle.Bin" }
+    ],
+    "tools": "없음",
+    "dataNeeded": null,
+    "summary": "지식이 없어도 할 수 있는 기본적인 확인"
+  },
+  {
+    "id": "fs_edu_intermediate",
+    "category": "파일시스템",
+    "purpose": "기본 보안",
+    "level": "중급",
+    "artifacts": [
+      { "name": "$MFT", "behavior": "NTFS 파일시스템의 핵심 파일", "path": "C:\\$MFT" },
+      { "name": "$LogFile", "behavior": "파일 변경 여부 확인", "path": "C:\\$LogFile" },
+      { "name": "$Data", "behavior": "실제 데이터 저장", "path": "C:\\$Data" }
+    ],
+    "tools": "HxD, FTK Imager",
+    "dataNeeded": null,
+    "summary": "파일 구조 이해하고 파일 카빙으로 배운 내용 학습"
+  },
+  {
+    "id": "fs_edu_advanced",
+    "category": "파일시스템",
+    "purpose": "기본 보안",
+    "level": "고급",
+    "artifacts": [
+      { "name": "$MFT", "behavior": "NTFS 파일시스템의 핵심 파일", "path": "C:\\$MFT" },
+      { "name": "$LogFile", "behavior": "파일 변경 여부 확인", "path": "C:\\$LogFile" },
+      { "name": "$UsnJrnl", "behavior": "파일 시스템 변경 이벤트 확인", "path": "C:\\$UsnJrnl" },
+      { "name": "$LogFile", "behavior": "파일 메타디에터 변경 사항 확인", "path": "C:\\$LogFile" },
+      { "name": "$Bitmap", "behavior": "할당 상태 확인", "path": "C:\\$Bitmap" }
+    ],
+    "tools": "HxD, NTFS Log Tracker, analyzeMFT, FTK Imager, Winprefetch",
+    "dataNeeded": "$LogFile, $UsnJrnl:$j, $MFT",
+    "summary": "단순 확인을 넘어 각 파일간 메타데이터 비교를 통해 안티포렌식 식별 능력 함양"
   }
 ];
 
@@ -743,6 +879,7 @@ export const purposes = [
   "기본 보안",
 ] as const;
 export const categories = [
+  "파일시스템",
   "사용자 행위",
   "레지스트리 분석",
   "계정 및 인증 분석",
