@@ -11,21 +11,21 @@ interface Props {
 }
 
 const levelStyles: Record<string, string> = {
-  "초급": "border-level-beginner/40 bg-level-beginner/10 text-level-beginner",
-  "중급": "border-level-intermediate/40 bg-level-intermediate/10 text-level-intermediate",
-  "고급": "border-level-advanced/40 bg-level-advanced/10 text-level-advanced",
+  "입문자": "border-level-beginner/40 bg-level-beginner/10 text-level-beginner",
+  "중급자": "border-level-intermediate/40 bg-level-intermediate/10 text-level-intermediate",
+  "전문가": "border-level-advanced/40 bg-level-advanced/10 text-level-advanced",
 };
 
 const purposeStyles: Record<string, string> = {
-  "수사 조사": "border-purpose-forensic/40 bg-purpose-forensic/10 text-purpose-forensic",
-  "보안 침해 분석": "border-purpose-security/40 bg-purpose-security/10 text-purpose-security",
-  "기본 보안": "border-purpose-education/40 bg-purpose-education/10 text-purpose-education",
+  "법정 증거 수집": "border-purpose-forensic/40 bg-purpose-forensic/10 text-purpose-forensic",
+  "침해사고 대응": "border-purpose-security/40 bg-purpose-security/10 text-purpose-security",
+  "일반 점검 및 교육": "border-purpose-education/40 bg-purpose-education/10 text-purpose-education",
 };
 
 const purposeIcons: Record<string, string> = {
-  "수사 조사": "🔍",
-  "보안 침해 분석": "🚨",
-  "기본 보안": "🎓",
+  "법정 증거 수집": "🔍",
+  "침해사고 대응": "🚨",
+  "일반 점검 및 교육": "🎓",
 };
 
 const categoryIcons: Record<string, string> = {
@@ -72,7 +72,7 @@ export function FilterBar(props: Props) {
             onClick={() => props.onToggleLevel(l)}
             className={levelStyles[l]}
           >
-            {l === "초급" ? "🟢" : l === "중급" ? "🟡" : "🔴"} {l}
+            {l === "입문자" ? "🟢" : l === "중급자" ? "🟡" : "🔴"} {l}
           </Chip>
         ))}
       </FilterGroup>

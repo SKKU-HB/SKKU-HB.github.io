@@ -2,21 +2,21 @@ import { motion } from "framer-motion";
 import type { Artifact } from "@/data/artifacts";
 
 const levelColorMap: Record<string, string> = {
-  "초급": "bg-level-beginner/15 text-level-beginner border-level-beginner/30",
-  "중급": "bg-level-intermediate/15 text-level-intermediate border-level-intermediate/30",
-  "고급": "bg-level-advanced/15 text-level-advanced border-level-advanced/30",
+  "입문자": "bg-level-beginner/15 text-level-beginner border-level-beginner/30",
+  "중급자": "bg-level-intermediate/15 text-level-intermediate border-level-intermediate/30",
+  "전문가": "bg-level-advanced/15 text-level-advanced border-level-advanced/30",
 };
 
 const levelDotMap: Record<string, string> = {
-  "초급": "bg-level-beginner",
-  "중급": "bg-level-intermediate",
-  "고급": "bg-level-advanced",
+  "입문자": "bg-level-beginner",
+  "중급자": "bg-level-intermediate",
+  "전문가": "bg-level-advanced",
 };
 
 const purposeColorMap: Record<string, string> = {
-  "수사 조사": "text-purpose-forensic",
-  "보안 침해 분석": "text-purpose-security",
-  "기본 보안": "text-purpose-education",
+  "법정 증거 수집": "text-purpose-forensic",
+  "침해사고 대응": "text-purpose-security",
+  "일반 점검 및 교육": "text-purpose-education",
 };
 
 interface Props {

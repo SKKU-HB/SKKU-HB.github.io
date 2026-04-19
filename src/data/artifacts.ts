@@ -19,8 +19,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "ub_inv_basic",
     "category": "사용자 행위",
-    "purpose": "수사 조사",
-    "level": "초급",
+    "purpose": "법정 증거 수집",
+    "level": "입문자",
     "artifacts": [
       { "name": "Prefetch", "behavior": "프로그램 실행 여부 확인", "path": "C:\\Windows\\Prefetch\\*.pf" },
       { "name": "$MFT", "behavior": "파일 생성·수정 시간", "path": "C:\\$MFT (Raw 접근 필요)" },
@@ -34,8 +34,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "ub_inv_intermediate",
     "category": "사용자 행위",
-    "purpose": "수사 조사",
-    "level": "중급",
+    "purpose": "법정 증거 수집",
+    "level": "중급자",
     "artifacts": [
       { "name": "Prefetch + Amcache", "behavior": "실행 여부 + 파일 정보", "path": "C:\\Windows\\Prefetch\\*.pf + C:\\Windows\\AppCompat\\Programs\\Amcache.hve" },
       { "name": "$MFT + $UsnJrnl", "behavior": "파일 수정·삭제 추적", "path": "C:\\$MFT (Raw 접근 필요) + C:\\$Extend\\$UsnJrnl" },
@@ -49,8 +49,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "ub_inv_advanced",
     "category": "사용자 행위",
-    "purpose": "수사 조사",
-    "level": "고급",
+    "purpose": "법정 증거 수집",
+    "level": "전문가",
     "artifacts": [
       { "name": "Prefetch + Amcache + ShimCache", "behavior": "과거 실행 흔적 포함", "path": "C:\\Windows\\Prefetch\\*.pf + C:\\Windows\\AppCompat\\Programs\\Amcache.hve + C:\\Windows\\System32\\config\\SYSTEM" },
       { "name": "$MFT + $UsnJrnl", "behavior": "전체 파일 흐름 분석", "path": "C:\\$MFT (Raw 접근 필요) + C:\\$Extend\\$UsnJrnl" },
@@ -64,8 +64,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "ub_ir_basic",
     "category": "사용자 행위",
-    "purpose": "보안 침해 분석",
-    "level": "초급",
+    "purpose": "침해사고 대응",
+    "level": "입문자",
     "artifacts": [
       { "name": "Prefetch", "behavior": "프로그램 실행 여부 확인", "path": "C:\\Windows\\Prefetch\\*.pf" },
       { "name": "Run / Startup Registry", "behavior": "자동 실행 프로그램", "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run / HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" }
@@ -77,8 +77,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "ub_ir_intermediate",
     "category": "사용자 행위",
-    "purpose": "보안 침해 분석",
-    "level": "중급",
+    "purpose": "침해사고 대응",
+    "level": "중급자",
     "artifacts": [
       { "name": "Prefetch + Amcache", "behavior": "실행 여부 + 파일 경로/해시", "path": "C:\\Windows\\Prefetch\\*.pf + C:\\Windows\\AppCompat\\Programs\\Amcache.hve" },
       { "name": "Run / Startup Registry", "behavior": "지속성 여부 확인", "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run / HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" },
@@ -93,8 +93,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "ub_ir_advanced",
     "category": "사용자 행위",
-    "purpose": "보안 침해 분석",
-    "level": "고급",
+    "purpose": "침해사고 대응",
+    "level": "전문가",
     "artifacts": [
       { "name": "Prefetch + Amcache + ShimCache", "behavior": "실행 + 과거 흔적 + 우회 흔적", "path": "C:\\Windows\\Prefetch\\*.pf + C:\\Windows\\AppCompat\\Programs\\Amcache.hve + C:\\Windows\\System32\\config\\SYSTEM" },
       { "name": "Run / Startup + ShimCache", "behavior": "지속성 확보 분석", "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run / HKLM\\... + C:\\Windows\\System32\\config\\SYSTEM" },
@@ -109,8 +109,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "ub_edu_basic",
     "category": "사용자 행위",
-    "purpose": "기본 보안",
-    "level": "초급",
+    "purpose": "일반 점검 및 교육",
+    "level": "입문자",
     "artifacts": [
       { "name": "Recent Files", "behavior": "최근 열어본 파일", "path": "C:\\Users\\<사용자>\\AppData\\Roaming\\Microsoft\\Windows\\Recent\\" },
       { "name": "Prefetch", "behavior": "실행된 프로그램", "path": "C:\\Windows\\Prefetch\\*.pf" },
@@ -124,8 +124,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "ub_edu_intermediate",
     "category": "사용자 행위",
-    "purpose": "기본 보안",
-    "level": "중급",
+    "purpose": "일반 점검 및 교육",
+    "level": "중급자",
     "artifacts": [
       { "name": "Recent Files + Jump List", "behavior": "프로그램별 파일 사용 이력", "path": "C:\\Users\\<사용자>\\AppData\\Roaming\\Microsoft\\Windows\\Recent\\ + AutomaticDestinations\\" },
       { "name": "Prefetch", "behavior": "실행 횟수 및 시간 분석", "path": "C:\\Windows\\Prefetch\\*.pf" },
@@ -139,8 +139,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "ub_edu_advanced",
     "category": "사용자 행위",
-    "purpose": "기본 보안",
-    "level": "고급",
+    "purpose": "일반 점검 및 교육",
+    "level": "전문가",
     "artifacts": [
       { "name": "LNK + Jump List + Shellbags", "behavior": "파일 + 폴더 + GUI 행동 통합", "path": "C:\\Users\\<사용자>\\AppData\\Roaming\\Microsoft\\Windows\\Recent\\*.lnk + AutomaticDestinations\\ + NTUSER.DAT" },
       { "name": "Prefetch", "behavior": "프로그램 실행 흐름", "path": "C:\\Windows\\Prefetch\\*.pf" },
@@ -154,8 +154,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "reg_inv_basic",
     "category": "레지스트리 분석",
-    "purpose": "수사 조사",
-    "level": "초급",
+    "purpose": "법정 증거 수집",
+    "level": "입문자",
     "artifacts": [
       { "name": "SAM (Security Account Manager)", "behavior": "사용자 계정 정보", "path": "C:\\Windows\\System32\\config\\SAM" },
       { "name": "SECURITY 하이브", "behavior": "보안 설정 정보", "path": "C:\\Windows\\System32\\config\\SECURITY" },
@@ -171,8 +171,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "reg_inv_intermediate",
     "category": "레지스트리 분석",
-    "purpose": "수사 조사",
-    "level": "중급",
+    "purpose": "법정 증거 수집",
+    "level": "중급자",
     "artifacts": [
       { "name": "UserAssist 데이터", "behavior": "프로그램 실행 이력", "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\UserAssist" },
       { "name": "ShellBags", "behavior": "폴더 탐색 기록", "path": "NTUSER.DAT 및 USRCLASS.DAT 내 관련 키" },
@@ -187,8 +187,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "reg_inv_advanced",
     "category": "레지스트리 분석",
-    "purpose": "수사 조사",
-    "level": "고급",
+    "purpose": "법정 증거 수집",
+    "level": "전문가",
     "artifacts": [
       { "name": "레지스트리 하이브 파일", "behavior": "오프라인 하이브 분석", "path": "C:\\Windows\\System32\\config\\SYSTEM, SOFTWARE, SAM, SECURITY" },
       { "name": "트랜잭션 로그 파일", "behavior": "변경 이력 추적", "path": "C:\\Windows\\System32\\config\\*.LOG, .LOG1, .LOG2" },
@@ -201,8 +201,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "auth_inv_basic",
     "category": "계정 및 인증 분석",
-    "purpose": "수사 조사",
-    "level": "초급",
+    "purpose": "법정 증거 수집",
+    "level": "입문자",
     "artifacts": [
       { "name": "로그인 기록", "behavior": "성공/실패 로그인 추적", "path": "C:\\Windows\\System32\\winevt\\Logs\\Security.evtx (ID 4624, 4625)" },
       { "name": "SAM 데이터베이스", "behavior": "로컬 사용자 계정 정보", "path": "C:\\Windows\\System32\\config\\SAM" }
@@ -214,8 +214,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "auth_inv_intermediate",
     "category": "계정 및 인증 분석",
-    "purpose": "수사 조사",
-    "level": "중급",
+    "purpose": "법정 증거 수집",
+    "level": "중급자",
     "artifacts": [
       { "name": "로그인 실패/잠금 기록", "behavior": "무차별 대입 탐지", "path": "Security.evtx (ID 4625, 4740)" },
       { "name": "Credential Manager", "behavior": "저장된 자격 증명 확인", "path": "C:\\Users\\[사용자명]\\AppData\\Local/Roaming\\Microsoft\\Credentials\\" }
@@ -227,8 +227,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "auth_inv_advanced",
     "category": "계정 및 인증 분석",
-    "purpose": "수사 조사",
-    "level": "고급",
+    "purpose": "법정 증거 수집",
+    "level": "전문가",
     "artifacts": [
       { "name": "NTLM 해시", "behavior": "자격 증명 탈취 흔적", "path": "C:\\Windows\\System32\\config\\SAM" },
       { "name": "Kerberos 티켓", "behavior": "Golden/Silver Ticket 공격", "path": "메모리 내 티켓 캐시" },
@@ -242,8 +242,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "sys_inv_basic",
     "category": "시스템 정보 분석",
-    "purpose": "수사 조사",
-    "level": "초급",
+    "purpose": "법정 증거 수집",
+    "level": "입문자",
     "artifacts": [
       { "name": "OS 설치 정보", "behavior": "운영체제 기본 정보", "path": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion" },
       { "name": "시스템 정보", "behavior": "하드웨어 및 부팅 정보", "path": "C:\\Windows\\System32\\systeminfo.exe" },
@@ -257,8 +257,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "sys_inv_intermediate",
     "category": "시스템 정보 분석",
-    "purpose": "수사 조사",
-    "level": "중급",
+    "purpose": "법정 증거 수집",
+    "level": "중급자",
     "artifacts": [
       { "name": "설치된 프로그램 목록", "behavior": "소프트웨어 흔적", "path": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall" },
       { "name": "실행 중인 서비스", "behavior": "백그라운드 영속성", "path": "HKLM\\SYSTEM\\CurrentControlSet\\Services" },
@@ -271,8 +271,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "sys_inv_advanced",
     "category": "시스템 정보 분석",
-    "purpose": "수사 조사",
-    "level": "고급",
+    "purpose": "법정 증거 수집",
+    "level": "전문가",
     "artifacts": [
       { "name": "VSS 스냅샷", "behavior": "과거 파일/상태 복원", "path": "VSS 마운트 경로" },
       { "name": "트랜잭션 로그", "behavior": "변경 이력 추적", "path": "C:\\Windows\\System32\\config\\*.LOG, .LOG1, .LOG2" },
@@ -285,8 +285,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "reg_ir_basic",
     "category": "레지스트리 분석",
-    "purpose": "보안 침해 분석",
-    "level": "초급",
+    "purpose": "침해사고 대응",
+    "level": "입문자",
     "artifacts": [
       { "name": "자동 실행 프로그램", "behavior": "초기 영속성 확인", "path": "HKCU/HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run(Once)" },
       { "name": "서비스 등록 정보", "behavior": "서비스 위장 악성코드", "path": "HKLM\\SYSTEM\\CurrentControlSet\\Services" },
@@ -299,8 +299,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "reg_ir_intermediate",
     "category": "레지스트리 분석",
-    "purpose": "보안 침해 분석",
-    "level": "중급",
+    "purpose": "침해사고 대응",
+    "level": "중급자",
     "artifacts": [
       { "name": "실시간 변경 로그", "behavior": "실시간 레지스트리 조작", "path": "Process Monitor 캡처 로그" },
       { "name": "AppInit_DLLs / IFEO", "behavior": "DLL 인젝션 및 프로세스 하이재킹", "path": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\AppInit_DLLs 및 IFEO" },
@@ -313,8 +313,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "reg_ir_advanced",
     "category": "레지스트리 분석",
-    "purpose": "보안 침해 분석",
-    "level": "고급",
+    "purpose": "침해사고 대응",
+    "level": "전문가",
     "artifacts": [
       { "name": "트랜잭션 로그", "behavior": "은폐된 변경 추적", "path": "C:\\Windows\\System32\\config\\*.LOG" },
       { "name": "VSS 스냅샷 내 레지스트리", "behavior": "과거 상태 비교", "path": "VSS 마운트 경로 내 Windows\\System32\\config\\" },
@@ -327,8 +327,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "auth_ir_basic",
     "category": "계정 및 인증 분석",
-    "purpose": "보안 침해 분석",
-    "level": "초급",
+    "purpose": "침해사고 대응",
+    "level": "입문자",
     "artifacts": [
       { "name": "활성/비활성 사용자 계정", "behavior": "백도어 계정 확인", "path": "C:\\Windows\\System32\\config\\SAM" },
       { "name": "로컬 그룹 정책", "behavior": "권한 설정 변경 확인", "path": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies" }
@@ -340,8 +340,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "auth_ir_intermediate",
     "category": "계정 및 인증 분석",
-    "purpose": "보안 침해 분석",
-    "level": "중급",
+    "purpose": "침해사고 대응",
+    "level": "중급자",
     "artifacts": [
       { "name": "로그인 실패/잠금 이벤트", "behavior": "무차별 대입 탐지", "path": "이벤트 ID: 4625, 4740" },
       { "name": "비정상 로그인 위치/시간대", "behavior": "원격 침해 확인", "path": "이벤트 ID: 4624 (Logon Type, IP 분석)" }
@@ -353,8 +353,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "auth_ir_advanced",
     "category": "계정 및 인증 분석",
-    "purpose": "보안 침해 분석",
-    "level": "고급",
+    "purpose": "침해사고 대응",
+    "level": "전문가",
     "artifacts": [
       { "name": "SIEM 로그", "behavior": "전사적 이상 징후 분석", "path": "SIEM 서버 (Splunk, ELK 등)" },
       { "name": "Kerberos 인증 로그", "behavior": "고도화된 인증 우회", "path": "이벤트 ID: 4768, 4769" },
@@ -367,8 +367,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "sys_ir_basic",
     "category": "시스템 정보 분석",
-    "purpose": "보안 침해 분석",
-    "level": "초급",
+    "purpose": "침해사고 대응",
+    "level": "입문자",
     "artifacts": [
       { "name": "보안 소프트웨어 설치", "behavior": "보안 솔루션 우회 여부", "path": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall" },
       { "name": "Windows Defender 상태", "behavior": "백신 무력화 확인", "path": "HKLM\\SOFTWARE\\Microsoft\\Windows Defender" },
@@ -381,8 +381,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "sys_ir_intermediate",
     "category": "시스템 정보 분석",
-    "purpose": "보안 침해 분석",
-    "level": "중급",
+    "purpose": "침해사고 대응",
+    "level": "중급자",
     "artifacts": [
       { "name": "실행 중인/불필요한 서비스", "behavior": "악성 서비스 점검", "path": "HKLM\\SYSTEM\\CurrentControlSet\\Services, services.msc" },
       { "name": "네트워크 연결 상태", "behavior": "C&C 통신 식별", "path": "netstat -ano" }
@@ -394,8 +394,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "sys_ir_advanced",
     "category": "시스템 정보 분석",
-    "purpose": "보안 침해 분석",
-    "level": "고급",
+    "purpose": "침해사고 대응",
+    "level": "전문가",
     "artifacts": [
       { "name": "VSS 스냅샷 / 복원 지점", "behavior": "감염 전 상태 확보", "path": "VSS 마운트 경로, C:\\System Volume Information\\" },
       { "name": "NTFS $MFT / $LogFile", "behavior": "악성코드 타임라인", "path": "C:\\$MFT, C:\\$LogFile" }
@@ -407,8 +407,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "reg_edu_basic",
     "category": "레지스트리 분석",
-    "purpose": "기본 보안",
-    "level": "초급",
+    "purpose": "일반 점검 및 교육",
+    "level": "입문자",
     "artifacts": [
       { "name": "자동 실행 프로그램", "behavior": "시작 프로그램 점검", "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" },
       { "name": "최근 문서 목록", "behavior": "개인 활동 내역", "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\RecentDocs" }
@@ -420,8 +420,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "reg_edu_intermediate",
     "category": "레지스트리 분석",
-    "purpose": "기본 보안",
-    "level": "중급",
+    "purpose": "일반 점검 및 교육",
+    "level": "중급자",
     "artifacts": [
       { "name": "레지스트리 키 백업", "behavior": "시스템 안전성 확보", "path": "사용자 지정 경로 (.reg 파일)" },
       { "name": "의심 프로그램 경로", "behavior": "악성 여부 검증", "path": "레지스트리 값에서 추출한 경로" }
@@ -433,8 +433,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "reg_edu_advanced",
     "category": "레지스트리 분석",
-    "purpose": "기본 보안",
-    "level": "고급",
+    "purpose": "일반 점검 및 교육",
+    "level": "전문가",
     "artifacts": [
       { "name": "레지스트리 변경 로그", "behavior": "프로그램 행위 분석", "path": "Process Monitor 캡처 로그" },
       { "name": "레지스트리 변경 내역 비교", "behavior": "설치 전후 비교", "path": "RegShot 비교 결과" }
@@ -446,8 +446,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "auth_edu_basic",
     "category": "계정 및 인증 분석",
-    "purpose": "기본 보안",
-    "level": "초급",
+    "purpose": "일반 점검 및 교육",
+    "level": "입문자",
     "artifacts": [
       { "name": "계정 유형 확인", "behavior": "관리자/표준 권한", "path": "제어판 → 사용자 계정" },
       { "name": "계정 관리", "behavior": "불필요 계정 점검", "path": "C:\\Windows\\System32\\config\\SAM" }
@@ -459,8 +459,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "auth_edu_intermediate",
     "category": "계정 및 인증 분석",
-    "purpose": "기본 보안",
-    "level": "중급",
+    "purpose": "일반 점검 및 교육",
+    "level": "중급자",
     "artifacts": [
       { "name": "로그인 시도 기록", "behavior": "비정상 접근 패턴 확인", "path": "C:\\Windows\\System32\\winevt\\Logs\\Security.evtx (ID 4624, 4625)" }
     ],
@@ -471,8 +471,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "auth_edu_advanced",
     "category": "계정 및 인증 분석",
-    "purpose": "기본 보안",
-    "level": "고급",
+    "purpose": "일반 점검 및 교육",
+    "level": "전문가",
     "artifacts": [
       { "name": "이중 인증 (2FA)", "behavior": "강력한 접근 제어", "path": "온라인 서비스 계정 설정" },
       { "name": "인증 애플리케이션", "behavior": "OTP 연동", "path": "Google Authenticator, Authy 등" }
@@ -484,8 +484,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "sys_edu_basic",
     "category": "시스템 정보 분석",
-    "purpose": "기본 보안",
-    "level": "초급",
+    "purpose": "일반 점검 및 교육",
+    "level": "입문자",
     "artifacts": [
       { "name": "시스템 정보", "behavior": "사양 및 시작 프로그램", "path": "C:\\Windows\\System32\\systeminfo.exe" },
       { "name": "설치된 소프트웨어 목록", "behavior": "불필요 프로그램 점검", "path": "제어판 → 프로그램 및 기능" }
@@ -497,8 +497,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "sys_edu_intermediate",
     "category": "시스템 정보 분석",
-    "purpose": "기본 보안",
-    "level": "중급",
+    "purpose": "일반 점검 및 교육",
+    "level": "중급자",
     "artifacts": [
       { "name": "안전/불필요 소프트웨어", "behavior": "프로그램 신뢰성 검증", "path": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall, 제어판" }
     ],
@@ -509,8 +509,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "sys_edu_advanced",
     "category": "시스템 정보 분석",
-    "purpose": "기본 보안",
-    "level": "고급",
+    "purpose": "일반 점검 및 교육",
+    "level": "전문가",
     "artifacts": [
       { "name": "시스템 / 애플리케이션 로그", "behavior": "오류 및 안정성 진단", "path": "C:\\Windows\\System32\\winevt\\Logs\\System.evtx, Application.evtx" }
     ],
@@ -521,8 +521,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "log_inv_basic",
     "category": "이벤트 로그 분석",
-    "purpose": "수사 조사",
-    "level": "초급",
+    "purpose": "법정 증거 수집",
+    "level": "입문자",
     "artifacts": [
       { "name": "이벤트 로그", "behavior": "기본 데이터 확보 및 열람", "path": "%SystemRoot%\\System32\\Winevt\\Logs\\" }
     ],
@@ -533,8 +533,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "log_inv_intermediate",
     "category": "이벤트 로그 분석",
-    "purpose": "수사 조사",
-    "level": "중급",
+    "purpose": "법정 증거 수집",
+    "level": "중급자",
     "artifacts": [
       { "name": "Security.evtx / Application.evtx", "behavior": "행위 입증 및 에러 확인", "path": "%SystemRoot%\\System32\\Winevt\\Logs\\" }
     ],
@@ -545,8 +545,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "log_inv_advanced",
     "category": "이벤트 로그 분석",
-    "purpose": "수사 조사",
-    "level": "고급",
+    "purpose": "법정 증거 수집",
+    "level": "전문가",
     "artifacts": [
       { "name": "VSC 및 비할당 영역", "behavior": "손상/삭제된 로그 복원", "path": "\\\\?\\GLOBALROOT\\Device\\HarddiskVolumeShadowCopy[X]\\ (VSC 내부 경로), 디스크 전체 비할당 영역(Unallocated Space)" }
     ],
@@ -557,8 +557,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "log_ir_basic",
     "category": "이벤트 로그 분석",
-    "purpose": "보안 침해 분석",
-    "level": "초급",
+    "purpose": "침해사고 대응",
+    "level": "입문자",
     "artifacts": [
       { "name": "이벤트 로그", "behavior": "로그 1차 필터링", "path": "%SystemRoot%\\System32\\Winevt\\Logs\\" }
     ],
@@ -569,8 +569,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "log_ir_intermediate",
     "category": "이벤트 로그 분석",
-    "purpose": "보안 침해 분석",
-    "level": "중급",
+    "purpose": "침해사고 대응",
+    "level": "중급자",
     "artifacts": [
       { "name": "PowerShell / TaskScheduler 로그", "behavior": "악성 스크립트 실행 분석", "path": "%SystemRoot%\\System32\\Winevt\\Logs\\" }
     ],
@@ -581,8 +581,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "log_ir_advanced",
     "category": "이벤트 로그 분석",
-    "purpose": "보안 침해 분석",
-    "level": "고급",
+    "purpose": "침해사고 대응",
+    "level": "전문가",
     "artifacts": [
       { "name": "Sysmon 로그", "behavior": "고도화된 헌팅 및 상관 분석", "path": "Microsoft-Windows-Sysmon%4Operational.evtx" }
     ],
@@ -593,8 +593,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "log_edu_basic",
     "category": "이벤트 로그 분석",
-    "purpose": "기본 보안",
-    "level": "초급",
+    "purpose": "일반 점검 및 교육",
+    "level": "입문자",
     "artifacts": [
       { "name": "System.evtx", "behavior": "로그 접근 및 오류 점검", "path": "%SystemRoot%\\System32\\Winevt\\Logs\\" }
     ],
@@ -605,8 +605,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "log_edu_intermediate",
     "category": "이벤트 로그 분석",
-    "purpose": "기본 보안",
-    "level": "중급",
+    "purpose": "일반 점검 및 교육",
+    "level": "중급자",
     "artifacts": [
       { "name": "Security.evtx", "behavior": "감사 정책 메커니즘 이해", "path": "%SystemRoot%\\System32\\Winevt\\Logs\\" }
     ],
@@ -617,8 +617,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "log_edu_advanced",
     "category": "이벤트 로그 분석",
-    "purpose": "기본 보안",
-    "level": "고급",
+    "purpose": "일반 점검 및 교육",
+    "level": "전문가",
     "artifacts": [
       { "name": "WMI / ETW 로그", "behavior": "백그라운드 이벤트 로깅 원리", "path": "C:\\Windows\\System32\\LogFiles\\WMI\\, C:\\Windows\\Logs\\ 하위 폴더" }
     ],
@@ -629,8 +629,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "net_inv_basic",
     "category": "네트워크 분석",
-    "purpose": "수사 조사",
-    "level": "초급",
+    "purpose": "법정 증거 수집",
+    "level": "입문자",
     "artifacts": [
       { "name": "브라우저 SQLite DB", "behavior": "접속 기록 타임라인 구성", "path": "%LocalAppData%\\Google\\Chrome\\User Data\\Default\\ (크롬 기준), %LocalAppData%\\Microsoft\\Edge\\User Data\\Default\\ (엣지 기준)" }
     ],
@@ -641,8 +641,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "net_inv_intermediate",
     "category": "네트워크 분석",
-    "purpose": "수사 조사",
-    "level": "중급",
+    "purpose": "법정 증거 수집",
+    "level": "중급자",
     "artifacts": [
       { "name": "SRUM 데이터베이스", "behavior": "네트워크 사용량 기반 유출 입증", "path": "%SystemRoot%\\System32\\sru\\" }
     ],
@@ -653,8 +653,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "net_inv_advanced",
     "category": "네트워크 분석",
-    "purpose": "수사 조사",
-    "level": "고급",
+    "purpose": "법정 증거 수집",
+    "level": "전문가",
     "artifacts": [
       { "name": "RAM 메모리 덤프", "behavior": "휘발성/은닉 네트워크 통신 추적", "path": "C:\\MEMORY.DMP, C:\\pagefile.sys, C:\\hiberfil.sys" }
     ],
@@ -665,8 +665,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "net_ir_basic",
     "category": "네트워크 분석",
-    "purpose": "보안 침해 분석",
-    "level": "초급",
+    "purpose": "침해사고 대응",
+    "level": "입문자",
     "artifacts": [
       { "name": "방화벽 로그", "behavior": "외부 통신 기초 점검", "path": "%SystemRoot%\\System32\\LogFiles\\Firewall\\" }
     ],
@@ -677,8 +677,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "net_ir_intermediate",
     "category": "네트워크 분석",
-    "purpose": "보안 침해 분석",
-    "level": "중급",
+    "purpose": "침해사고 대응",
+    "level": "중급자",
     "artifacts": [
       { "name": "BITS DB / DNS 캐시", "behavior": "백그라운드 통신 및 캐시 분석", "path": "%ALLUSERSPROFILE%\\Microsoft\\Network\\Downloader\\ (BITS DB), 물리적 메모리 (DNS 캐시)" }
     ],
@@ -689,8 +689,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "net_ir_advanced",
     "category": "네트워크 분석",
-    "purpose": "보안 침해 분석",
-    "level": "고급",
+    "purpose": "침해사고 대응",
+    "level": "전문가",
     "artifacts": [
       { "name": "브라우저 웹 캐시", "behavior": "암호화 통신 우회 분석", "path": "%LocalAppData%\\Google\\Chrome\\UserData\\Default\\Cache\\Cache_Data (크롬 기준)" }
     ],
@@ -701,8 +701,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "net_edu_basic",
     "category": "네트워크 분석",
-    "purpose": "기본 보안",
-    "level": "초급",
+    "purpose": "일반 점검 및 교육",
+    "level": "입문자",
     "artifacts": [
       { "name": "hosts 파일", "behavior": "로컬 네트워크 기본 점검", "path": "%SystemRoot%\\System32\\drivers\\etc\\" }
     ],
@@ -713,8 +713,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "net_edu_intermediate",
     "category": "네트워크 분석",
-    "purpose": "기본 보안",
-    "level": "중급",
+    "purpose": "일반 점검 및 교육",
+    "level": "중급자",
     "artifacts": [
       { "name": "브라우저 Cache_Data", "behavior": "OS 통신 캐싱 메커니즘 이해", "path": "%LocalAppData%\\Google\\Chrome\\UserData\\Default\\Cache\\Cache_Data" }
     ],
@@ -725,8 +725,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "net_edu_advanced",
     "category": "네트워크 분석",
-    "purpose": "기본 보안",
-    "level": "고급",
+    "purpose": "일반 점검 및 교육",
+    "level": "전문가",
     "artifacts": [
       { "name": "네트워크 인터페이스 캡처", "behavior": "패킷 구조 및 프라이버시 이해", "path": "네트워크 인터페이스 캡처 (디스크 상의 고정된 파일 경로 없음, RAM 상에서 휘발)." }
     ],
@@ -737,8 +737,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "fs_inv_basic",
     "category": "파일시스템",
-    "purpose": "수사 조사",
-    "level": "초급",
+    "purpose": "법정 증거 수집",
+    "level": "입문자",
     "artifacts": [
       { "name": "$MFT", "behavior": "파일 이름 등 메타데이터", "path": "C:\\$MFT" },
       { "name": "$LogFile", "behavior": "파일 변경 여부 확인", "path": "C:\\$LogFile" }
@@ -750,8 +750,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "fs_inv_intermediate",
     "category": "파일시스템",
-    "purpose": "수사 조사",
-    "level": "중급",
+    "purpose": "법정 증거 수집",
+    "level": "중급자",
     "artifacts": [
       { "name": "$MFT", "behavior": "파일 이름 및 생성 시간, 소유자 등 정보 확인", "path": "C:\\$MFT" },
       { "name": "$LogFile", "behavior": "파일 생성, 파일 삭제, 변경 여부 등 확인 가능", "path": "C:\\$LogFile" },
@@ -767,8 +767,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "fs_inv_advanced",
     "category": "파일시스템",
-    "purpose": "수사 조사",
-    "level": "고급",
+    "purpose": "법정 증거 수집",
+    "level": "전문가",
     "artifacts": [
       { "name": "$MFT", "behavior": "파일 이름 및 생성 시간($FILE_NAME), 파일 소유자, 접근 권한 등 일반적 정보($STANDARD_INFORMATION), 파일 내용($DATA) 등", "path": "C:\\$MFT" },
       { "name": "$LogFile", "behavior": "파일 생성, 파일 삭제, 변경 여부 등 확인 가능", "path": "C:\\$LogFile" },
@@ -784,8 +784,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "fs_ir_basic",
     "category": "파일시스템",
-    "purpose": "보안 침해 분석",
-    "level": "초급",
+    "purpose": "침해사고 대응",
+    "level": "입문자",
     "artifacts": [
       { "name": "$MFT", "behavior": "악성코드 생성 및 수정 시간, 파일 메타데이터 확인", "path": "C:\\$MFT" },
       { "name": "$UsnJrnl", "behavior": "파일 시스템 변경 이벤트 확인", "path": "C:\\$LogFile" },
@@ -798,8 +798,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "fs_ir_intermediate",
     "category": "파일시스템",
-    "purpose": "보안 침해 분석",
-    "level": "중급",
+    "purpose": "침해사고 대응",
+    "level": "중급자",
     "artifacts": [
       { "name": "$MFT", "behavior": "악성코드 생성 및 수정 시간, 파일 메타데이터 확인", "path": "C:\\$MFT" },
       { "name": "$UsnJrnl", "behavior": "파일 시스템 변경 이벤트 확인", "path": "C:\\$LogFile" },
@@ -813,8 +813,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "fs_ir_advanced",
     "category": "파일시스템",
-    "purpose": "보안 침해 분석",
-    "level": "고급",
+    "purpose": "침해사고 대응",
+    "level": "전문가",
     "artifacts": [
       { "name": "$MFT", "behavior": "악성코드 생성 및 수정 시간, 파일 메타데이터 확인", "path": "C:\\$MFT" },
       { "name": "$UsnJrnl", "behavior": "파일 시스템 변경 이벤트 확인", "path": "C:\\$UsnJrnl" },
@@ -830,8 +830,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "fs_edu_basic",
     "category": "파일시스템",
-    "purpose": "기본 보안",
-    "level": "초급",
+    "purpose": "일반 점검 및 교육",
+    "level": "입문자",
     "artifacts": [
       { "name": "파일 상세정보", "behavior": "파일 이름 등 메타데이터", "path": "파일 우클릭→속성→생성 및 수정 시간 등 메타데이터 확인" },
       { "name": "휴지통", "behavior": "삭제된 파일 확인", "path": "C:\\$Recycle.Bin" }
@@ -843,8 +843,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "fs_edu_intermediate",
     "category": "파일시스템",
-    "purpose": "기본 보안",
-    "level": "중급",
+    "purpose": "일반 점검 및 교육",
+    "level": "중급자",
     "artifacts": [
       { "name": "$MFT", "behavior": "NTFS 파일시스템의 핵심 파일", "path": "C:\\$MFT" },
       { "name": "$LogFile", "behavior": "파일 변경 여부 확인", "path": "C:\\$LogFile" },
@@ -857,8 +857,8 @@ export const artifacts: Artifact[] = [
   {
     "id": "fs_edu_advanced",
     "category": "파일시스템",
-    "purpose": "기본 보안",
-    "level": "고급",
+    "purpose": "일반 점검 및 교육",
+    "level": "전문가",
     "artifacts": [
       { "name": "$MFT", "behavior": "NTFS 파일시스템의 핵심 파일", "path": "C:\\$MFT" },
       { "name": "$LogFile", "behavior": "파일 변경 여부 확인", "path": "C:\\$LogFile" },
@@ -872,11 +872,11 @@ export const artifacts: Artifact[] = [
   }
 ];
 
-export const levels = ["초급", "중급", "고급"] as const;
+export const levels = ["입문자", "중급자", "전문가"] as const;
 export const purposes = [
-  "수사 조사",
-  "보안 침해 분석",
-  "기본 보안",
+  "법정 증거 수집",
+  "침해사고 대응",
+  "일반 점검 및 교육",
 ] as const;
 export const categories = [
   "파일시스템",

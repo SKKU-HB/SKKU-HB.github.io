@@ -100,9 +100,9 @@ const Index = () => {
 
   const stats = useMemo(() => ({
     total: filtered.length,
-    beginner: filtered.filter((a) => a.level === "초급").length,
-    intermediate: filtered.filter((a) => a.level === "중급").length,
-    advanced: filtered.filter((a) => a.level === "고급").length,
+    beginner: filtered.filter((a) => a.level === "입문자").length,
+    intermediate: filtered.filter((a) => a.level === "중급자").length,
+    advanced: filtered.filter((a) => a.level === "전문가").length,
   }), [filtered]);
 
   return (
@@ -139,9 +139,9 @@ const Index = () => {
             className="flex gap-6 mt-8 font-mono text-xs"
           >
             <Stat label="전체" value={stats.total} color="text-foreground" />
-            <Stat label="초급" value={stats.beginner} color="text-level-beginner" />
-            <Stat label="중급" value={stats.intermediate} color="text-level-intermediate" />
-            <Stat label="고급" value={stats.advanced} color="text-level-advanced" />
+            <Stat label="입문자" value={stats.beginner} color="text-level-beginner" />
+            <Stat label="중급자" value={stats.intermediate} color="text-level-intermediate" />
+            <Stat label="전문가" value={stats.advanced} color="text-level-advanced" />
           </motion.div>
         </div>
       </header>

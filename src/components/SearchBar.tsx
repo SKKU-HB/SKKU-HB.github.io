@@ -66,7 +66,7 @@ export function SearchBar({ onClassified, onCleared }: Props) {
             onKeyDown={(e) => {
               if (e.key === "Enter") submit();
             }}
-            placeholder="예: 악성코드 침해 사고 중급 분석, 레지스트리로 계정 추적, 네트워크 패킷 캡처"
+            placeholder="예: 악성코드 침해 사고 중급자 분석, 레지스트리로 계정 추적, 네트워크 패킷 캡처"
             disabled={disabled}
             className="pl-9 pr-10 font-mono text-sm"
           />

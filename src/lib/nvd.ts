@@ -116,10 +116,10 @@ function extractCwes(cve: NvdCve): string {
 }
 
 function levelFromCvss(score: number | null): Level {
-  if (score === null) return "중급";
-  if (score < 4) return "초급";
-  if (score < 7) return "중급";
-  return "고급";
+  if (score === null) return "중급자";
+  if (score < 4) return "입문자";
+  if (score < 7) return "중급자";
+  return "전문가";
 }
 
 function extractArtifactItems(cve: NvdCve, behavior: string): ArtifactItem[] {
@@ -179,7 +179,7 @@ export async function cveToArtifact(cve: NvdCve): Promise<Artifact> {
   return {
     id: `cve_${cve.id.toLowerCase()}`,
     category: "NIST CVE",
-    purpose: classifiedPurpose ?? "보안 침해 분석",
+    purpose: classifiedPurpose ?? "침해사고 대응",
     level: classifiedLevel ?? levelFromCvss(cvss),
     artifacts,
     tools: toolsBits.length ? toolsBits.join(" · ") : null,
