@@ -1,17 +1,42 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { artifacts } from "@/data/artifacts";
-import type { Level, Purpose } from "@/data/artifacts";
+import { Loader2, Download } from "lucide-react";
+import { artifacts as staticArtifacts } from "@/data/artifacts";
+import type { Artifact, Level, Purpose } from "@/data/artifacts";
 import { FilterBar } from "@/components/FilterBar";
 import { ArtifactCard } from "@/components/ArtifactCard";
 import { SearchBar } from "@/components/SearchBar";
 import type { ClassifyResult } from "@/lib/classifier";
+import { fetchAndClassifyCves, type CveFetchProgress } from "@/lib/nvd";
 
 const Index = () => {
   const [selectedLevels, setSelectedLevels] = useState<Level[]>([]);
   const [selectedPurposes, setSelectedPurposes] = useState<Purpose[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [cveArtifacts, setCveArtifacts] = useState<Artifact[]>([]);
+  const [cveStatus, setCveStatus] = useState<"idle" | "loading" | "error">("idle");
+  const [cveProgress, setCveProgress] = useState<CveFetchProgress | null>(null);
+  const [cveError, setCveError] = useState<string | null>(null);
+
+  const allArtifacts = useMemo(
+    () => [...staticArtifacts, ...cveArtifacts],
+    [cveArtifacts],
+  );
+
+  const loadCves = async () => {
+    setCveStatus("loading");
+    setCveError(null);
+    try {
+      const results = await fetchAndClassifyCves(10, (p) => setCveProgress(p));
+      setCveArtifacts(results);
+      setCveStatus("idle");
+    } catch (e) {
+      console.error("[Index] CVE load failed:", e);
+      setCveError(e instanceof Error ? e.message : String(e));
+      setCveStatus("error");
+    }
+  };
 
   const toggleLevel = (l: Level) =>
     setSelectedLevels((prev) =>
@@ -48,7 +73,7 @@ const Index = () => {
     const noClassifier =
       selectedLevels.length === 0 && selectedPurposes.length === 0 && !selectedCategory;
 
-    return artifacts.filter((a) => {
+    return allArtifacts.filter((a) => {
       if (selectedLevels.length && !selectedLevels.includes(a.level as Level)) return false;
       if (selectedPurposes.length && !selectedPurposes.includes(a.purpose as Purpose)) return false;
       if (selectedCategory && a.category !== selectedCategory) return false;
@@ -71,7 +96,7 @@ const Index = () => {
       }
       return true;
     });
-  }, [selectedLevels, selectedPurposes, selectedCategory, searchQuery]);
+  }, [selectedLevels, selectedPurposes, selectedCategory, searchQuery, allArtifacts]);
 
   const stats = useMemo(() => ({
     total: filtered.length,
@@ -133,6 +158,33 @@ const Index = () => {
           <SearchBar onClassified={handleClassified} onCleared={handleCleared} />
         </motion.div>
 
+        {/* NIST CVE ingestion */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.18 }}
+          className="mb-4 flex flex-wrap items-center gap-3 rounded-lg border border-border bg-card/50 p-4"
+        >
+          <button
+            onClick={loadCves}
+            disabled={cveStatus === "loading"}
+            className="inline-flex items-center gap-1.5 rounded-md border border-primary/40 bg-primary/10 px-3 py-2 text-xs font-medium text-primary hover:bg-primary/20 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            {cveStatus === "loading" ? (
+              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+            ) : (
+              <Download className="h-3.5 w-3.5" />
+            )}
+            NIST CVE 10건 불러오기
+          </button>
+          <CveStatusLine
+            status={cveStatus}
+            progress={cveProgress}
+            error={cveError}
+            loadedCount={cveArtifacts.length}
+          />
+        </motion.div>
+
         {/* Filters */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -171,6 +223,50 @@ const Index = () => {
     </div>
   );
 };
+
+function CveStatusLine({
+  status,
+  progress,
+  error,
+  loadedCount,
+}: {
+  status: "idle" | "loading" | "error";
+  progress: CveFetchProgress | null;
+  error: string | null;
+  loadedCount: number;
+}) {
+  if (status === "error") {
+    return (
+      <span className="text-xs font-mono text-destructive truncate max-w-full">
+        불러오기 실패: {error}
+      </span>
+    );
+  }
+  if (status === "loading" && progress) {
+    if (progress.stage === "fetching") {
+      return <span className="text-xs font-mono text-muted-foreground">NVD API 호출 중…</span>;
+    }
+    if (progress.stage === "classifying") {
+      return (
+        <span className="text-xs font-mono text-muted-foreground">
+          BERT 분류 중 {progress.current + 1}/{progress.total}
+        </span>
+      );
+    }
+  }
+  if (loadedCount > 0) {
+    return (
+      <span className="text-xs font-mono text-muted-foreground">
+        최근 CVE {loadedCount}건을 아티팩트로 통합 완료
+      </span>
+    );
+  }
+  return (
+    <span className="text-xs font-mono text-muted-foreground">
+      NVD API에서 최근 30일 CVE를 받아 BERT로 purpose · level 분류 후 아티팩트로 편입합니다.
+    </span>
+  );
+}
 
 function Stat({ label, value, color }: { label: string; value: number; color: string }) {
   return (

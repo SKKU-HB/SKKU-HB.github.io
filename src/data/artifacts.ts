@@ -886,6 +886,7 @@ export const categories = [
   "시스템 정보 분석",
   "이벤트 로그 분석",
   "네트워크 분석",
+  "NIST CVE",
 ] as const;
 
 export type Level = (typeof levels)[number];

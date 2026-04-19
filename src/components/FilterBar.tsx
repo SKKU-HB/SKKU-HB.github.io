@@ -29,12 +29,14 @@ const purposeIcons: Record<string, string> = {
 };
 
 const categoryIcons: Record<string, string> = {
+  "파일시스템": "💾",
   "사용자 행위": "👤",
   "레지스트리 분석": "🗂",
   "계정 및 인증 분석": "🔑",
   "시스템 정보 분석": "🖥",
   "이벤트 로그 분석": "📋",
   "네트워크 분석": "🌐",
+  "NIST CVE": "🛡️",
 };
 
 export function FilterBar(props: Props) {
