@@ -122,12 +122,12 @@ const Index = () => {
               <span className="text-xs font-medium text-primary font-mono tracking-wider uppercase">OS Artifact Analysis</span>
             </div>
             <h1 className="font-display text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-3">
-              수준별 OS 아티팩트
-              <br />
-              <span className="text-primary">분석 가이드</span>
+              {/* 수준별 OS 아티팩트
+              <br /> */}
+              <span className="text-primary">ForensIQ</span>
             </h1>
             <p className="text-sm md:text-base text-muted-foreground max-w-xl leading-relaxed">
-              디지털 포렌식, 보안 침해 대응, 교육 학습 — 목적과 수준에 맞는 Windows OS 아티팩트 분석 방법론을 탐색하세요.
+             목적과 수준에 맞는 아티팩트 분석 방법론을 탐색하세요
             </p>
           </motion.div>
 
